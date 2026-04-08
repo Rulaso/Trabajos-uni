@@ -2,7 +2,7 @@ package Punto8;
 
 public class punto8{
 	public static void main(String[] args) {
-		Queue<Integer> prueba = new Queue<Integer>();
+		/*Queue<Integer> prueba = new Queue<Integer>();
 		
 		System.out.println(prueba.size());
 		if(prueba.isEmpty()) {
@@ -28,7 +28,7 @@ public class punto8{
 		
 		System.out.println(prueba.toString());
 		
-		System.out.println(prueba.head());
+		System.out.println(prueba.head());*/
 	}
 	
 	

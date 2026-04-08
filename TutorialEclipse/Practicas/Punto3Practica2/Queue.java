@@ -1,4 +1,4 @@
-package Punto8;
+package Punto3Practica2;
 
 import java.util.List;
 import java.util.LinkedList;
@@ -6,11 +6,14 @@ import java.util.LinkedList;
 public class Queue <T> extends Sequence{
 	protected List<T> data;
 	public Queue() {
-		
+		this.data = new LinkedList<T>();
 	}
 	
-	public List<T> getData() {
-		return data;
+	public T getData() {
+		if(data != null) {
+			return data.get(0);
+		}
+		return null;
 	}
 
 	public void setData(List<T> data) {
@@ -18,42 +21,33 @@ public class Queue <T> extends Sequence{
 	}
 
 	public void enqueue(T data) {
-		if(this.isEmpty()) {
-			this.data = new LinkedList<T>();
-			this.data.add(data);
-			
-		} else {
-			this.data.add(data);
-		}
-	
+		this.data.add(data);
 	}
 	
-	public Queue<T> dequeue() {
+	public T dequeue() {
 		if(!this.isEmpty()) {
+			T aux = this.data.get(0);
 			this.data.remove(0);
+			
+			return aux;
 		} else {
 			System.out.println("LA COLA ESTA VACIA");
+			return null;
 		}
-		
-		return this;
 	}
 		
 	public boolean isEmpty() {
-		if(this.getData() == null) {
+		if(this.size() == 0) {
 			return true;
 		}
 		return false;
 	}
 	
 	public int size() {
-		int cant = 0;
-		int i=0;
-		while((!this.isEmpty()) && (i< this.data.size())) {
-			this.data.get(i);	
-			i++;
-			cant++;
-		}
-		return cant;
+		if (this.data == null) {
+	        return 0;
+	    }
+	    return this.data.size();
 	}
 	
 	@Override
