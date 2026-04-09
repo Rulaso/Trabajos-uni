@@ -25,13 +25,17 @@ public class Test{
 		
 		for (int i=0; i<aaa.size();i++) {
 			System.out.println(aaa.get(i));
-		}*/
+		}
 		
-		//RedBinariaLLena pruebaRetardo = new RedBinariaLLena(prueba);	
-		//System.out.println(pruebaRetardo.retardoReenvio());
+		RedBinariaLLena pruebaRetardo = new RedBinariaLLena(prueba);	
+		System.out.println(pruebaRetardo.retardoReenvio());
 		
 		ProfundidadDeArbolBinario pruebaProf = new ProfundidadDeArbolBinario(prueba);
 		
-		System.out.println(pruebaProf.sumaElementosProfundidad(2));
+		System.out.println(pruebaProf.sumaElementosProfundidad(2));*/
+		
+		Transformacion pruebaTrans =  new Transformacion(prueba);
+		
+		pruebaTrans.Suma();
 	}
 }

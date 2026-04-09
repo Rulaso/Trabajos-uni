@@ -17,7 +17,7 @@ public class ProfundidadDeArbolBinario{
 			abAux = cola.dequeue();
 			if(abAux != null){
 				if(nivel == capa) {
-					cant+= ab.getData();
+					cant+= abAux.getData();
 				}
 				if(abAux.hasLeftChild()) {
 					cola.enqueue(abAux.getLeftChild());
