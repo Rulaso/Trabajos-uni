@@ -1,4 +1,4 @@
-package Punto3Practica2;
+package Practica2;
 
 public class ProfundidadDeArbolBinario{
 	private BinaryTree<Integer> ab;

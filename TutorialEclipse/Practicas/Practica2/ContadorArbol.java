@@ -1,4 +1,4 @@
-package Punto3Practica2;
+package Practica2;
 
 import java.util.List;
 import java.util.LinkedList;

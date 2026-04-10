@@ -1,4 +1,4 @@
-package Punto3Practica2;
+package Practica2;
 
 import java.util.List;
 import java.util.LinkedList;
@@ -33,9 +33,11 @@ public class Test{
 		ProfundidadDeArbolBinario pruebaProf = new ProfundidadDeArbolBinario(prueba);
 		
 		System.out.println(pruebaProf.sumaElementosProfundidad(2));*/
-		
+		BinaryTree<Integer> transformado = new BinaryTree<Integer>();
 		Transformacion pruebaTrans =  new Transformacion(prueba);
 		
-		pruebaTrans.Suma();
+		transformado = pruebaTrans.Suma();
+		
+		transformado.entreNiveles(0, 2);
 	}
 }

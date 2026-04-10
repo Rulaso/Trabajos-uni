@@ -1,4 +1,4 @@
-package Punto3Practica2;
+package Practica2;
 
 public abstract class Sequence<T>{
 	
