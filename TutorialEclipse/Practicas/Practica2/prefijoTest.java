@@ -3,83 +3,47 @@ package Practica2;
 public class prefijoTest{
 	public static void main(String[] args) {
 		// --- Construcción del "arbol 1" ---
-        // Instanciar los nodos individuales con sus valores enteros
-        BinaryTree<Integer> root1 = new BinaryTree<>(65);
-        BinaryTree<Integer> node37 = new BinaryTree<>(37);
-        BinaryTree<Integer> node81 = new BinaryTree<>(81);
-        BinaryTree<Integer> node47 = new BinaryTree<>(47);
-        BinaryTree<Integer> node93 = new BinaryTree<>(93);
-
-        // Armar la estructura del arbol 1 usando addLeftChild() y addRightChild()
-        root1.addLeftChild(node37);
-        root1.addRightChild(node81);
-
-        node37.addRightChild(node47); // El hijo izquierdo permanece nulo por defecto
-        
-        node81.addRightChild(node93); // El hijo izquierdo permanece nulo por defecto
+        BinaryTree<Integer> root1 = new BinaryTree<Integer>(65);
+        BinaryTree<Integer> nodo37 = new BinaryTree<Integer>(37);
+        nodo37.addRightChild(new BinaryTree<Integer>(47));
+        BinaryTree<Integer> nodo81 = new BinaryTree<Integer>(81);
+        nodo81.addRightChild(new BinaryTree<Integer>(93));
+        root1.addLeftChild(nodo37);
+        root1.addRightChild(nodo81);
 
         
-
-
-        // --- Construcción del "arbol 2" ---
-        // Instanciar todos los nodos necesarios para el arbol 2
-        BinaryTree<Integer> root2 = new BinaryTree<>(65);
-        BinaryTree<Integer> node37_2 = new BinaryTree<>(37);
-        BinaryTree<Integer> node81_2 = new BinaryTree<>(81);
-        BinaryTree<Integer> node22 = new BinaryTree<>(22);
-        BinaryTree<Integer> node47_2 = new BinaryTree<>(47);
-        BinaryTree<Integer> node76 = new BinaryTree<>(76);
-        BinaryTree<Integer> node93_2 = new BinaryTree<>(93);
-        BinaryTree<Integer> node11 = new BinaryTree<>(11);
-        BinaryTree<Integer> node29 = new BinaryTree<>(29);
-        BinaryTree<Integer> node85 = new BinaryTree<>(85);
-        BinaryTree<Integer> node94 = new BinaryTree<>(94);
-
-        // Armar la estructura del arbol 2 (nivel por nivel)
-        // Nivel 0 (Raíz)
-        root2.addLeftChild(node37_2);
-        root2.addRightChild(node81_2);
-
-        // Nivel 1 (Hijos de la raíz)
-        node37_2.addLeftChild(node22);
-        node37_2.addRightChild(node47_2);
-        node81_2.addLeftChild(node76);
-        node81_2.addRightChild(node93_2);
-
-        // Nivel 2 (Hijos de los nodos 22 y 93)
-        node22.addLeftChild(node11);
-        node22.addRightChild(node29);
-        node93_2.addLeftChild(node85);
-        node93_2.addRightChild(node94);
+        // --- Construccion del "arbol 2" ---
+        BinaryTree<Integer> root2 = new BinaryTree<Integer>(65);
+        BinaryTree<Integer> nodo37_2 = new BinaryTree<Integer>(37);
+        BinaryTree<Integer> nodo22 = new BinaryTree<Integer>(22);
+        nodo37_2.addLeftChild(nodo22);
+        nodo37_2.addRightChild(new BinaryTree<Integer>(47));
+        nodo22.addLeftChild(new BinaryTree<Integer>(11));
+        nodo22.addRightChild(new BinaryTree<Integer>(29));
+        BinaryTree<Integer> nodo81_2 = new BinaryTree<Integer>(81);
+        BinaryTree<Integer> nodo93 = new BinaryTree<Integer>(93);
+        nodo93.addLeftChild(new BinaryTree<Integer>(85));
+        nodo93.addRightChild(new BinaryTree<Integer>(94));
+        nodo81_2.addLeftChild(new BinaryTree<Integer>(76));
+        nodo81_2.addRightChild(nodo93);
+        root2.addLeftChild(nodo37_2);
+        root2.addRightChild(nodo81_2);
         
-        BinaryTree<Integer> node11_3 = new BinaryTree<>(11);
-        BinaryTree<Integer> node29_3 = new BinaryTree<>(29);
-        BinaryTree<Integer> node47_3 = new BinaryTree<>(47);
-        BinaryTree<Integer> node76_3 = new BinaryTree<>(76);
-
-        // Nivel 2
-        BinaryTree<Integer> node22_3 = new BinaryTree<>(22);
-        node22.addLeftChild(node11);
-        node22.addRightChild(node29);
-
-        // Nivel 1 (los hijos directos de la raíz original)
-        BinaryTree<Integer> node37_3 = new BinaryTree<>(37);
-        node37.addLeftChild(node22);
-        node37.addRightChild(node47);
-
-        BinaryTree<Integer> node81_3 = new BinaryTree<>(81);
-        node81.addLeftChild(node76);
-        // El hijo derecho de 81 no se define, permanece null
-
-        // --- Creación de la nueva raíz "root 3" ---
-        // Creamos el nodo raíz con el valor 3
-        BinaryTree<Integer> root3 = new BinaryTree<>(65);
-
-        // --- Conexión de la nueva raíz a los subárboles originales ---
-        // Conectamos los subárboles originales como hijos de la nueva raíz
-        root3.addLeftChild(node37);
-        root3.addRightChild(node81);
-
+        // --- Construccion del "arbol 3" --- 
+        BinaryTree<Integer> root3 = new BinaryTree<Integer>(65);
+        BinaryTree<Integer> nodo37_3 = new BinaryTree<Integer>(37);
+        BinaryTree<Integer> nodo22_3 = new BinaryTree<Integer>(22);
+        nodo22_3.addLeftChild(new BinaryTree<Integer>(11));
+        nodo22_3.addRightChild(new BinaryTree<Integer>(29));
+        nodo37_3.addLeftChild(nodo22_3);
+        nodo37_3.addRightChild(new BinaryTree<Integer>(47));
+        BinaryTree<Integer>nodo81_3 = new BinaryTree<Integer>(81);
+        nodo81_3.addLeftChild(new BinaryTree<Integer>(76));
+        root3.addLeftChild(nodo37_3);
+        root3.addRightChild(nodo81_3);
+        
+        // --- TERMINO LA ETAPA DE CONSTRUCCION DE ARBOLES ---
+        
         root1.printPreorden();
         System.out.println("TERMINE ");
         System.out.println();
@@ -92,7 +56,7 @@ public class prefijoTest{
        
 		Prefijo prueba = new Prefijo();
 		
-		if(prueba.esPrefijo(root1, root2)) {
+		if(prueba.esPrefijo(root1, root3)) {
 			System.out.println("DEVOLVIO TRUE");
 		} else {
 			System.out.println("DEVOLVIO FALSE");

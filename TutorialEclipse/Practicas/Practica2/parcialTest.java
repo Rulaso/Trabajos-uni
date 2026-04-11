@@ -27,7 +27,7 @@ public class parcialTest{
 		
 		ParcialArboles prueba = new ParcialArboles(raiz);
 		
-		if(prueba.isLeftTree(700)) {
+		if(prueba.isLeftTree(7)) {
 			System.out.println("EL MODO DEVOLVIO TRUE");
 		} else {
 			System.out.println("EL NODO DEVOLVIO FALSE");
