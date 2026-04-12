@@ -56,7 +56,7 @@ public class prefijoTest{
        
 		Prefijo prueba = new Prefijo();
 		
-		if(prueba.esPrefijo(root1, root3)) {
+		if(prueba.esPrefijo(root1, root2)) {
 			System.out.println("DEVOLVIO TRUE");
 		} else {
 			System.out.println("DEVOLVIO FALSE");
