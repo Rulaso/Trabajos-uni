@@ -141,11 +141,13 @@ procedure imprimirArchivo(var mae: archivo);
 var
 	d: data;
 begin
+	reset(mae);
 	leerArchivo(mae, d);
 	while(d.cod <> valorAlto) do begin
 		imprimirRegistro(d);
 		leerArchivo(mae, d);
 	end;
+	close(mae);
 end;
 				
 var
