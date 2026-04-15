@@ -26,9 +26,9 @@ public function login(Request $request, Response $response, array $args){
             //me guardo el id en una variable
             $id = $datos['id'];
         
-            User::crearToken($id); //<- Creo el token en la base de datos utulizando el id del usuario
+            $token = User::crearToken($id); //<- Creo el token en la base de datos utulizando el id del usuario
 
-            $cumple = ["status" => "200 OK", "message" => "Se completo existosamente el login"];    //<-creo el mensaje
+            $cumple = ["status" => "200 OK", "message" => "Se completo existosamente el login", "token" => $token, "id" => $id];    //<-creo el mensaje
             $response->getBody()->write(json_encode($cumple));  
             return $response->withHeader("Content-Type", "application/json")->withStatus(200);      //<-envio el json con el OK
         } else {
@@ -39,5 +39,26 @@ public function login(Request $request, Response $response, array $args){
             return $response->withHeader("Content-Type", "application/json")->withStatus(400);      //<-envio el json con el Bad request
         }
     }
+}
+
+public function logout(Request $request, Response $response){
+    //recupero los datos enviados por el body
+    $datos = $request->getParsedBody();
+
+    //si no hay datos devuelvo un error 400
+    if(empty($datos)){
+        $error = ["status " => "400 Bad request", "message" => "Necesitas estar logueado para hacer esta accion"];
+        $response->getBody()->write(json_encode($error));
+        return $response->withHeader("Content-Type", "application/json")->withStatus(400);
+    } else {
+        //recupero el token de $datos
+        $token = $datos["token"];
+        User::deleteToken($token);  //<- utilizo deleteToken para borrar el token 
+
+        //devuelvo codigo 200
+        $exito = ["status" => "200 OK", "message"=> "Se deslogueo correctamente"];
+        $response->getBody()->write(json_encode($exito));
+        return $response->withHeader("Content-Type", "application/json")->withStatus(200);
+        }
 }
 }

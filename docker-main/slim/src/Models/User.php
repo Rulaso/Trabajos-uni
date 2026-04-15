@@ -27,6 +27,7 @@ class User {
         $tokenExpire = date('Y-m-d H:i:s', strtotime('+5 minutes'));
         //guardo el token y su tiempo de expiracion en la base de datos utilizando el id como referencia
         $db->query("UPDATE users SET token = '$token', token_expired_at = '$tokenExpire' WHERE id = '$id'"); 
+        return $token;
     }
 
     //Reestablesco la duracion del token en 5 minutos
@@ -34,5 +35,11 @@ class User {
         $db = DB::getConnection();
         $tokenExpire = date('Y-m-d H:i:s', strtotime('+5 minutes'));
         $db->query("UPDATE users SET token_expired_at = '$tokenExpire' WHERE id = '$id'");
+    }
+
+    //Borro el token y su tiempo de expiracion de la base de datos
+    public static function deleteToken($token){
+        $db = DB::getConnection();
+        $db->query("UPDATE users SET token = NULL, token_expired_at = NULL WHERE token = '$token'");
     }
 }
