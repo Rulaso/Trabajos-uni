@@ -3,10 +3,11 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 require __DIR__ . '/../Models/DB.php';
+require __DIR__ . '/../Models/User.php';
 class loginController {
 
 public function login(Request $request, Response $response, array $args){
-        //recibo los datos en $datos
+    //recibo los datos en $datos
     $datos = $request->getParsedBody();
     if(empty($datos['email'] || empty($datos['password']))){
         //Si falta email o contraseña envio un Bad request
@@ -17,14 +18,18 @@ public function login(Request $request, Response $response, array $args){
         //Guardo el email y contraseña en sus respectivas varaibles
         $email = $datos['email'];
         $password = $datos['password'];
-        //Si el email y la contraseña coinciden con un usuario existente envio un OK
-        //Esto se compara asi porque no hay base de datos para comparar
-        $db = DB::getConnection();
-        $prueba =  $db->query("SELECT email, password FROM users WHERE email = '$email' AND password = '$password'")->fetch(PDO::FETCH_ASSOC);
-        if($prueba['email'] == $email && $prueba['password'] == $password){ 
+        
+        $datos = User::getLoginData($email, $password); //<- Busco y recupero email, password e id del usuario (si es que existe)
+        
+        //verifico que la variable datos contenga los datos del usuario. Si el mismo no existe en la base de datos $datos = false                                                                                                                                       
+        if($datos){ 
+            //me guardo el id en una variable
+            $id = $datos['id'];
+        
+            User::crearToken($id); //<- Creo el token en la base de datos utulizando el id del usuario
+
             $cumple = ["status" => "200 OK", "message" => "Se completo existosamente el login"];    //<-creo el mensaje
             $response->getBody()->write(json_encode($cumple));  
-
             return $response->withHeader("Content-Type", "application/json")->withStatus(200);      //<-envio el json con el OK
         } else {
             //Si no cumplen con un usuario existente envio un Bad request
@@ -34,10 +39,5 @@ public function login(Request $request, Response $response, array $args){
             return $response->withHeader("Content-Type", "application/json")->withStatus(400);      //<-envio el json con el Bad request
         }
     }
-
 }
-
-
-
-
 }
