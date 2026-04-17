@@ -13,15 +13,13 @@ class User {
     }
 
     //recupero el email, password e id del usuario
-    public static function getLoginData($emal, $password){
-        $db = DB::getConnection();
-        $datos = $db->query("SELECT email, password, id FROM users WHERE email = $emal and password = $password");
+    public static function getLoginData($email, $password ,$db){
+        $datos = $db->query("SELECT email, password, id FROM users WHERE email = '$email' and password = '$password'");
         return $datos->fetchAll(PDO::FETCH_ASSOC);
     }
 
     //creo y guardo el token
-    public static function crearToken($id){
-        $db = DB::getConnection();  //<- abro la base de datos
+    public static function crearToken($id, $db){
         //genero el token
         $token = bin2hex(random_bytes(32));
         $tokenExpire = date('Y-m-d H:i:s', strtotime('+5 minutes'));
@@ -31,15 +29,13 @@ class User {
     }
 
     //Reestablesco la duracion del token en 5 minutos
-    public static function updateToken($id){
-        $db = DB::getConnection();
+    public static function updateToken($id, $db){
         $tokenExpire = date('Y-m-d H:i:s', strtotime('+5 minutes'));
         $db->query("UPDATE users SET token_expired_at = '$tokenExpire' WHERE id = '$id'");
     }
 
     //Borro el token y su tiempo de expiracion de la base de datos
-    public static function deleteToken($token){
-        $db = DB::getConnection();
+    public static function deleteToken($token, $db){
         $db->query("UPDATE users SET token = NULL, token_expired_at = NULL WHERE token = '$token'");
     }
 }
