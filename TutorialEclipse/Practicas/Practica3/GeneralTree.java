@@ -147,4 +147,34 @@ public class GeneralTree<T>{
 		}		
 		return max;
 	}
+	
+	
+	public boolean esAncestro(T a, T b) {
+		boolean existe = false;
+		if(this != null && !this.isEmpty()) {
+			GeneralTree<T> nodo = buscarPreOrder(this, a);
+			if(nodo != null) {
+				GeneralTree<T> descendiente = buscarPreOrder(nodo, b);
+				if(descendiente != null) {
+					existe = true;
+				}
+			}
+		}	
+		return existe;
+	}
+	
+	private GeneralTree<T> buscarPreOrder(GeneralTree<T> a, T data){
+		GeneralTree<T> nodo = null;
+		if(a.getData().equals(data)) {
+			nodo = a;
+		} else {
+			List<GeneralTree<T>> hijos = a.getChildren();
+			Iterator<GeneralTree<T>> iterador = hijos.iterator();
+			while(iterador.hasNext() && nodo == null) {
+				GeneralTree<T> hijo = iterador.next();
+				nodo = buscarPreOrder(hijo, data);
+			}
+		}
+		return nodo;
+	}
 }

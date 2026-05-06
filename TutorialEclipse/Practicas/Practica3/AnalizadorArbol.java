@@ -40,8 +40,7 @@ public class AnalizadorArbol {
 				if(promAct > mayorActual) {
 					mayorActual = promAct;
 				}
-			}
-			
+			}			
 		}
 		
 		return mayorActual;

@@ -22,8 +22,8 @@ public class punto3{
 		
 		System.out.println("La altura es "+alt);
 		
-		//int nivel = raiz.nivel(15);
+		int nivel = raiz.nivel(15);
 		
-		//System.out.println("El nivel es "+nivel);
+		System.out.println("El nivel es "+nivel);
 	}
 }
