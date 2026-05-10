@@ -1,36 +1,39 @@
 package Practica2;
 
 public class Transformacion{
-	private BinaryTree<Integer> ab;
+	private BinaryTree<Integer> arbol;
 	
 	public Transformacion(BinaryTree<Integer> ab) {
-		this.ab =  ab;
+		this.arbol =  ab;
 	}
 	
-	public BinaryTree<Integer> Suma(){
-		
-		int total = 0;
-		
-		if(this.ab != null && !this.ab.isEmpty()) {
-			sumarNodos(this.ab);
+	public BinaryTree<Integer> suma(){
+		BinaryTree<Integer> nuevo = new BinaryTree<Integer>();
+		if(arbol != null && !arbol.isEmpty()) {
+			sumarPostOrden(arbol, nuevo);
 		}
-		
-		return this.ab;
+		return nuevo;
 	}
 	
-	private int sumarNodos(BinaryTree<Integer> ab) {
-		int sumaIZ=0, sumaDE = 0;
-		
-		if(ab.hasLeftChild()) {
-			sumaIZ+= sumarNodos(ab.getLeftChild());
+	private int sumarPostOrden(BinaryTree<Integer> arbol, BinaryTree<Integer> nue) {
+		int actual = 0;
+		if(arbol.isLeaf()) {
+			nue.setData(0);
+			actual = arbol.getData();
+		} else {
+			int izq = 0, der = 0;
+			if(arbol.hasLeftChild()) {
+				nue.addLeftChild(new BinaryTree<Integer>());
+				izq = sumarPostOrden(arbol.getLeftChild(), nue.getLeftChild());
+			}
+			if(arbol.hasRightChild()) {
+				nue.addRightChild(new BinaryTree<Integer>());
+				der = sumarPostOrden(arbol.getRightChild(), nue.getRightChild());
+			}
+			nue.setData(izq + der);
+			actual = izq + der;
 		}
-		if(ab.hasRightChild()) {
-			sumaDE+= sumarNodos(ab.getRightChild());
-		}
-		int original = ab.getData();
-		ab.setData(sumaIZ + sumaDE);
-		
-		return original + ab.getData();
+		return actual;
 	}
 	
 }

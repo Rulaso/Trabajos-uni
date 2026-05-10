@@ -36,7 +36,7 @@ public class Test{
 		BinaryTree<Integer> transformado = new BinaryTree<Integer>();
 		Transformacion pruebaTrans =  new Transformacion(prueba);
 		
-		transformado = pruebaTrans.Suma();
+		transformado = pruebaTrans.suma();
 		
 		transformado.entreNiveles(0, 2);
 	}
