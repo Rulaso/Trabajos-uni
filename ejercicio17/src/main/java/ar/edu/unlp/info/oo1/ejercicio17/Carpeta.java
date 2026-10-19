@@ -28,4 +28,16 @@ public class Carpeta{
 	public int tamaño() {
 		return emails.stream().mapToInt(Email::tamaño).sum();
 	}
+	
+	public void agregarMail(Email e) {
+		emails.add(e);
+	}
+	
+	public void quitarMail(Email e) {
+		emails.remove(e);
+	}
+	
+	public int cantidad() {
+		return emails.size();
+	}
 }

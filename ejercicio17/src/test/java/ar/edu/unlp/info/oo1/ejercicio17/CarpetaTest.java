@@ -16,14 +16,17 @@ public class CarpetaTest{
 	@BeforeEach
 	void setup() {
 		c1 = new Carpeta("nombre");
-		c1 = new Carpeta("nombre");
+		c2 = new Carpeta("nombre");
 		e1 = new Email("titulo", "cuerpo");
-		e2 = new Email("titulo", "cuerpo2");
-		a1 = new Archivo("nombre");
-		a2 = new Archivo("nombre");
+		e2 = new Email("titulo2", "cuerpo2");
+		a1 = new Archivo("nombre1");
+		a2 = new Archivo("nombre2");
 		e1.adjuntos().add(a1);
 		e2.adjuntos().add(a1);
 		e2.adjuntos().add(a2);
+		c1.agregarMail(e1);
+		c2.agregarMail(e1);
+		c2.agregarMail(e2);
 	}
 	
 	@Test
@@ -33,8 +36,17 @@ public class CarpetaTest{
 	
 	@Test
 	void TestMover() {
-		assertEquals(e1.getTitulo(), c1.buscar("nombre"));
-		assertEquals(0, c1.);
+		assertEquals(e1, c1.buscar("titulo"));
+		assertEquals(2, c2.cantidad());
+		c1.mover(e1, c2);
+		assertEquals(e1, c2.buscar("titulo"));
+		assertEquals(null, c1.buscar("titulo"));
+	}
+	
+	@Test 
+	void TestTamaño(){ 
+		assertEquals(7, c1.tamaño());
+		assertEquals(21, c2.tamaño());
 	}
 	
 }

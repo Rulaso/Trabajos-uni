@@ -52,7 +52,7 @@ public class EmailTest{
 		e.quitarArchivo(a2);
 		assertEquals(1, e.adjuntos().size());
 		e.quitarArchivo(a1);
-		assertEquals(0, e.adjuntos());
+		assertEquals(0, e.adjuntos().size());
 	}
 	
 	@Test
