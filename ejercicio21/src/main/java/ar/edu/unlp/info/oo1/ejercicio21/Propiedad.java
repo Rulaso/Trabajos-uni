@@ -20,11 +20,7 @@ public class Propiedad{
 	public boolean estaDisponible(DateLapse periodo) {
 		return reservada.stream().noneMatch(dateLapse -> dateLapse.overlaps(periodo));
 	}
-	
-	public double calcularPrecio(DateLapse periodo) {
-		return precio * periodo.sizeInDays();
-	}
-	
+		
 	public boolean reservar(DateLapse periodo) {
 		if(this.estaDisponible(periodo)) {
 			reservada.add(periodo);
@@ -41,8 +37,13 @@ public class Propiedad{
 		return false;
 	}
 	
-	public double calcularTotal() {
-		return precio * reservada.size();
+	//Que pasa si tengo una reserva que no esta totalemnte dentro del rango? actualmente incluye a la suma los dias que estan fuera del mismo
+	public double calcularTotal(DateLapse rango) {
+		return precio * reservada.stream().filter(dateLapse -> dateLapse.overlaps(rango)).mapToInt(dateLapse -> dateLapse.sizeInDays()).sum();
+	}
+	
+	public double getPrecio() {
+		return precio;
 	}
 	
 }

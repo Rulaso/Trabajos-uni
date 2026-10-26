@@ -18,10 +18,28 @@ public class Usuario{
 	}
 	
 	public boolean crearReserva(Propiedad p, DateLapse lapso) {
-		if(p.reservar(lapso)) {
-			reservas.add(new Reserva(p));
+		Reserva r = new Reserva(p, lapso);
+		if(r.reservar()) {
+			reservas.add(r);
 			return true;
 		}
 		return false;
 	}
+	
+	public boolean consultarDisponibilidad(Propiedad p, DateLapse lapso) {
+		return p.estaDisponible(lapso);
+	}
+	
+	public double consultarPrecio(Reserva r) {
+		return r.calcularPrecio();
+	}
+	
+	public boolean cancelarReserva(Reserva r) {
+		if(reservas.contains(r)) {
+			r.ponerDisponible();
+			return reservas.remove(r);
+		}
+		return false;
+	}
+	
 }

@@ -7,26 +7,24 @@ import ar.edu.unlp.info.oo1.ejercicio18.*;
 
 public class Reserva{
 	private Propiedad p;
+	private DateLapse periodo;
 	
-	public Reserva(Propiedad p) {
+	public Reserva(Propiedad p, DateLapse periodo) {
 		this.p = p;
+		this.periodo = periodo;
+		this.reservar();
 	}
 	
 
-	
-	public double calcularPrecio(Propiedad p, DateLapse periodo) {
-		return p.calcularPrecio(periodo);
+	public double calcularPrecio() {
+		return p.getPrecio() * periodo.sizeInDays();
 	}
 	
-	public boolean reservar(Propiedad p, DateLapse periodo) {
-		if(p.estaDisponible(periodo)) {
-			p.reservar(periodo);
-			return true;
-		}
-		return false;
+	public boolean reservar() {
+		return p.reservar(periodo);
 	}
 	
-	public boolean ponerDisponible(Propiedad p, DateLapse periodo) {
+	public boolean ponerDisponible() {
 		if(!p.estaDisponible(periodo)) {
 			p.liberar(periodo);
 			return true;

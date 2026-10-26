@@ -30,6 +30,7 @@ public class DateLapse{
 	}
 	
 	public boolean overlaps(DateLapse anotherDateLapse) {
-		return (this.includesDate(anotherDateLapse.getFrom())) || (this.includesDate(anotherDateLapse.getTo()));
+		return (this.includesDate(anotherDateLapse.getFrom())) || (this.includesDate(anotherDateLapse.getTo()))
+				|| anotherDateLapse.includesDate(this.getFrom()) || anotherDateLapse.includesDate(this.getTo());
 	}
 }
