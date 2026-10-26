@@ -14,10 +14,14 @@ public class Usuario{
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.DNI = DNI;
-		reservas = new LinkedList<Propiedad>();
+		reservas = new LinkedList<Reserva>();
 	}
 	
-	public boolean crearReserva(Propiedad p) {
-		
+	public boolean crearReserva(Propiedad p, DateLapse lapso) {
+		if(p.reservar(lapso)) {
+			reservas.add(new Reserva(p));
+			return true;
+		}
+		return false;
 	}
 }

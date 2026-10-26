@@ -32,12 +32,17 @@ public class Propiedad{
 		}
 		return false;
 	}
-	
-	public boolean hacerDisponible(DateLapse periodo) {
+		
+	public boolean liberar(DateLapse periodo) {
 		if(!this.estaDisponible(periodo)) {
 			reservada.remove(periodo);
 			return true;
 		}
 		return false;
 	}
+	
+	public double calcularTotal() {
+		return precio * reservada.size();
+	}
+	
 }

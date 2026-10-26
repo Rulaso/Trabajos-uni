@@ -62,4 +62,5 @@ public class EmailTest{
 		e.agregarArchivo(a2);
 		assertEquals(12, e.tamaño());
 	}
+	//@Test(expected = )
 }
