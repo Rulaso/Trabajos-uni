@@ -27,4 +27,7 @@ public class Propietario extends Usuario {
 		return 0.75 * propiedades.stream().mapToDouble(propiedad -> propiedad.calcularTotal(rango)).sum();
 	}
 	
+	public int getCantidad() {
+		return propiedades.size();
+	}
 }

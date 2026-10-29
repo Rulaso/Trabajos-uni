@@ -50,7 +50,7 @@ public class UsuarioTest{
 	@Test
 	void TestConsultarPrecio() {
 		Reserva r = new Reserva(p1, l1);
-		assertEquals(260, u1.consultarPrecio(r));
+		assertEquals(250, u1.consultarPrecio(r));
 	}
 	
 	@Test

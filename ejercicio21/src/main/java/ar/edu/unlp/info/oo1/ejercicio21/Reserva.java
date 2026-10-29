@@ -25,7 +25,6 @@ public class Reserva{
 	}
 	
 	public boolean cancelarReserva() {
-		p.liberar(this);
-		return true;
+		return p.liberar(this);
 	}
 }
