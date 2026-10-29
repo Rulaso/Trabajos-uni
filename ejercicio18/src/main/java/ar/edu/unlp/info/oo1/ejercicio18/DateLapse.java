@@ -26,11 +26,15 @@ public class DateLapse{
 	}
 	
 	public boolean includesDate(LocalDate other) {
-		return (fechaIni.isAfter(other) && fechaFin.isBefore(other)) || fechaIni.equals(other) || fechaFin.equals(other);
+		return (fechaIni.isBefore(other) && fechaFin.isAfter(other)) || fechaIni.equals(other) || fechaFin.equals(other);
 	}
 	
 	public boolean overlaps(DateLapse anotherDateLapse) {
-		return (this.includesDate(anotherDateLapse.getFrom())) || (this.includesDate(anotherDateLapse.getTo()))
-				|| anotherDateLapse.includesDate(this.getFrom()) || anotherDateLapse.includesDate(this.getTo());
+		boolean r1 = this.includesDate(anotherDateLapse.getFrom());
+		boolean r2 = this.includesDate(anotherDateLapse.getTo());
+		boolean r3 = anotherDateLapse.includesDate(this.getFrom());
+		boolean r4 = anotherDateLapse.includesDate(this.getTo());
+		boolean result = (r1 || r2 || r3 || r4);
+		return result;
 	}
 }
